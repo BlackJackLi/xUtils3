@@ -27,18 +27,17 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 /*package*/ final class EventListenerManager {
 
-    private final static long QUICK_EVENT_TIME_SPAN = 300;
-    private final static HashSet<String> AVOID_QUICK_EVENT_SET = new HashSet<String>(2);
+//    private final static long QUICK_EVENT_TIME_SPAN = 300;
+//    private final static HashSet<String> AVOID_QUICK_EVENT_SET = new HashSet<String>(2);
 
-    static {
-        AVOID_QUICK_EVENT_SET.add("onClick");
-        AVOID_QUICK_EVENT_SET.add("onItemClick");
-    }
+//    static {
+//        AVOID_QUICK_EVENT_SET.add("onClick");
+//        AVOID_QUICK_EVENT_SET.add("onItemClick");
+//    }
 
     private EventListenerManager() {
     }
@@ -165,14 +164,14 @@ import java.util.Map;
 
                 if (method != null) {
 
-                    if (AVOID_QUICK_EVENT_SET.contains(eventMethod)) {
-                        long timeSpan = System.currentTimeMillis() - lastClickTime;
-                        if (timeSpan < QUICK_EVENT_TIME_SPAN) {
-                            LogUtil.d("onClick cancelled: " + timeSpan);
-                            return null;
-                        }
-                        lastClickTime = System.currentTimeMillis();
-                    }
+//                    if (AVOID_QUICK_EVENT_SET.contains(eventMethod)) {
+//                        long timeSpan = System.currentTimeMillis() - lastClickTime;
+//                        if (timeSpan < QUICK_EVENT_TIME_SPAN) {
+//                            LogUtil.d("onClick cancelled: " + timeSpan);
+//                            return null;
+//                        }
+//                        lastClickTime = System.currentTimeMillis();
+//                    }
 
                     try {
                         return method.invoke(handler, args);
